@@ -29,7 +29,7 @@ public class LoginController {
     ,@RequestParam(value = "password", required = true) String password){
         boolean isSuccess = LoginDAO.checkLogin(username, password);
         if(isSuccess){
-            return "test";
+            return "adminhome";
         }else{
             return "login";
         }
