@@ -66,12 +66,9 @@
                                     <ins><h3>Price: </h3>$${BookDetails.getPrice()}</ins>
                                 </div>    
 
-                                <form action="CartServlet" class="cart" method="post">
+                                <form action="${pageContext.request.contextPath}/cart/add" class="cart" method="POSTd">
                                     <div class="quantity">
-                                        <input type="hidden" name="id" value="">
-                                        <input type="hidden" name="link" value="">
-                                        <input type="hidden" name="price" value="">
-                                        <input type="hidden" name="title" value="">
+                                        <input type="hidden" name="id" value="${BookDetails.getId()}">
                                         <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
                                     </div>
                                     <button class="add_to_cart_button" type="submit">Add to cart</button>
