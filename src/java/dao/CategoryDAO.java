@@ -8,6 +8,7 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
+import pojo.Book;
 import pojo.Category;
 import utils.BookHibernateUtil;
 
@@ -45,5 +46,19 @@ public class CategoryDAO {
 
         return categories;
     }
+    
+    public static List<Category> getAllCategory(){
+        Session session = BookHibernateUtil.getSessionFactory().openSession();
+        List<Category> cats = null;
+        try {
+            cats = session.createQuery("from Category").list();
+        } catch (Exception e) {
+            
+        } finally {
+            session.close();
+        }
+        return cats;
+    }
+ 
 
 }

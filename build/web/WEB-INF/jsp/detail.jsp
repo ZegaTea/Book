@@ -29,12 +29,28 @@
                 </div>
 
                 <div class="single-sidebar">
+                    
+                    <h2 class="sidebar-title">Category</h2>
+                    <ul>
+                    <c:forEach var="item" items="${Cats}">
+                        <li><a href="${pageContext.request.contextPath}/detail/book-${item.getId()}">${item.getName()}</a></li>
+                    </c:forEach>
+                    </ul>
+                    
+                    <h2 class="sidebar-title">Author</h2>
+                    <ul>
+                    <c:forEach var="item" items="${Authorzxc}">
+                        <li><a href="${pageContext.request.contextPath}/detail/book-${item.getId()}">${item.getAuthor()}</a></li>
+                    </c:forEach>
+                    </ul>
+                    
                     <h2 class="sidebar-title">More Suggestions</h2>
                     <ul>
                     <c:forEach var="item" items="${SuggestionBooks}">
                         <li><a href="${pageContext.request.contextPath}/detail/book-${item.getId()}">${item.getTitle()} - ${item.getAuthor()}</a></li>
                     </c:forEach>
                     </ul>
+                    
                 </div>
             </div>
 

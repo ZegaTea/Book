@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pojo.Book;
+import pojo.Category;
 
 /**
  *
@@ -41,6 +42,15 @@ public class DetailController {
         //Suggestion Books
         List<Book> suggestionBooks = BookDAO.getRandomBooks();
         mm.put("SuggestionBooks", suggestionBooks);
+        
+        //Author
+        List<Book> author = BookDAO.getAllAuthor();
+        mm.put("Authorzxc", author);
+
+        //Cats
+        List<Category> cats = CategoryDAO.getAllCategory();
+        mm.put("Cats", cats);
+        
         return "detail";
     }
 }

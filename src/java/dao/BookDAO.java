@@ -76,4 +76,17 @@ public class BookDAO {
         
         return  suggestionBooks;
     }
+    
+    public static List<Book> getAllAuthor(){
+        Session session = BookHibernateUtil.getSessionFactory().openSession();
+        List<Book> author = null;
+        try {
+            author = session.createQuery("from Book").list();
+        } catch (Exception e) {
+            
+        } finally {
+            session.close();
+        }
+        return author;
+    }
 }
