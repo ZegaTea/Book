@@ -1,5 +1,5 @@
 package pojo;
-// Generated Nov 13, 2017 9:47:49 AM by Hibernate Tools 4.3.1
+// Generated Dec 15, 2017 12:20:35 AM by Hibernate Tools 4.3.1
 
 
 
@@ -12,13 +12,17 @@ public class User  implements java.io.Serializable {
      private Integer id;
      private String username;
      private String password;
+     private String name;
+     private String facebookId;
 
     public User() {
     }
 
-    public User(String username, String password) {
+    public User(String username, String password, String name, String facebookId) {
        this.username = username;
        this.password = password;
+       this.name = name;
+       this.facebookId = facebookId;
     }
    
     public Integer getId() {
@@ -41,6 +45,20 @@ public class User  implements java.io.Serializable {
     
     public void setPassword(String password) {
         this.password = password;
+    }
+    public String getName() {
+        return this.name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getFacebookId() {
+        return this.facebookId;
+    }
+    
+    public void setFacebookId(String facebookId) {
+        this.facebookId = facebookId;
     }
 
 

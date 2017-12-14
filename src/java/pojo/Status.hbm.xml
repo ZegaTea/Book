@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 15, 2017 12:20:36 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Status" table="Status" catalog="BookStore" optimistic-lock="version">
+        <id name="idStatus" type="java.lang.Integer">
+            <column name="idStatus" />
+            <generator class="identity" />
+        </id>
+        <property name="statusName" type="string">
+            <column name="statusName" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>
