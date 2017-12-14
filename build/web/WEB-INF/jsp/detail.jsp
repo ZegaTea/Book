@@ -66,7 +66,7 @@
                                     <ins><h3>Price: </h3>$${BookDetails.getPrice()}</ins>
                                 </div>    
 
-                                <form action="${pageContext.request.contextPath}/cart/add" class="cart" method="POSTd">
+                                <form action="${pageContext.request.contextPath}/cart/add" class="cart" method="POST">
                                     <div class="quantity">
                                         <input type="hidden" name="id" value="${BookDetails.getId()}">
                                         <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
