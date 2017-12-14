@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/k3mshiro/NetBeansProjects/WebsiteBook/src/java/controller/LoginController.java</file>
-            <file>file:/Users/k3mshiro/NetBeansProjects/WebsiteBook/web/WEB-INF/jsp/login.jsp</file>
+            <file>file:/E:/Git/book/Book/web/WEB-INF/jsp/checkout.jsp</file>
+            <file>file:/E:/Git/book/Book/src/java/controller/CartController.java</file>
+            <file>file:/E:/Git/book/Book/web/WEB-INF/jsp/header.jsp</file>
+            <file>file:/E:/Git/book/Book/web/WEB-INF/jsp/cart.jsp</file>
         </group>
     </open-files>
 </project-private>

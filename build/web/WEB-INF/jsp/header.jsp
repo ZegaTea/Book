@@ -1,7 +1,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -69,8 +71,8 @@
                             <ul>
                                 <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
                                 <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
-                                <li><a href="cart.jsp"><i class="fa fa-user"></i> My Cart</a></li>
-                                <li><a href="checkout.jsp"><i class="fa fa-user"></i> Checkout</a></li>
+                                <li><a href="${pageContext.request.contextPath}/cart/detail"><i class="fa fa-user"></i> My Cart</a></li>
+                                <li><a href="${pageContext.request.contextPath}/cart/cartcheckout"><i class="fa fa-user"></i> Checkout</a></li>
                                 <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
                             </ul>
                         </div>
@@ -144,7 +146,7 @@
                         <ul>
                             <li class="active"><a href="${pageContext.request.contextPath}/home/index">Home</a></li>
                             <li><a href="shop.jsp">Shop page</a></li>
-                            <li><a href="${pageContext.request.contextPath}/cart/detail">Cart</a></li>
+                            <li><a href="${pageContext.request.contextPath}/cart/cartcheckout">Checkout</a></li>
 
                         </ul>
                     </div>  
