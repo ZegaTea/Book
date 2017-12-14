@@ -27,6 +27,16 @@
         <!-- Font Awesome -->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
+        <!--LOGIN-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+        <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic'>
+        <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css'>
+        <link href="../resources/css/style1login.css" rel="stylesheet" type="text/css"/>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src='https://andwecode.com/wp-content/uploads/2015/10/jquery.leanModal.min_.js'></script>
+        <script src="../resources/js/indexlogin.js" type="text/javascript"></script>
+
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -59,6 +69,7 @@
             })
 
         </script>
+        <!--<link href="../resources/css/style1login.css" rel="stylesheet" type="text/css"/>-->
     </head>
     <body>
         <div class="header-area">
@@ -67,7 +78,8 @@
                     <div class="col-md-8">
                         <div class="user-menu">
                             <ul>
-                                <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
+                                <li><a id="modal_trigger" href="#modal"><i class="fa fa-user"></i> My Account</a></li>
+                                <!--<li><a id="modal_trigger" href="#modal"><i class="fa fa-user"></i> My Account</a></li>-->
                                 <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
                                 <li><a href="cart.jsp"><i class="fa fa-user"></i> My Cart</a></li>
                                 <li><a href="checkout.jsp"><i class="fa fa-user"></i> Checkout</a></li>

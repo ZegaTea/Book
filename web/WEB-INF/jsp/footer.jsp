@@ -96,5 +96,10 @@
 
 <!-- Main Script -->
 <script src="<c:url value="/resources/js/main.js" />" type="text/javascript"></script>
+
+<!--LOGIN
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://andwecode.com/wp-content/uploads/2015/10/jquery.leanModal.min_.js'></script>
+<script src="../resources/js/indexlogin.js" type="text/javascript"></script>-->
 </body>
 </html>

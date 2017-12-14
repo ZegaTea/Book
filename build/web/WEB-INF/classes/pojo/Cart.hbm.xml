@@ -1,15 +1,20 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Nov 13, 2017 9:47:50 AM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 15, 2017 1:30:41 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="pojo.Cart" table="Cart" catalog="BookStore" optimistic-lock="version">
-        <id name="id" type="java.lang.Integer">
-            <column name="id" />
-            <generator class="identity" />
-        </id>
-        <property name="totalPrice" type="java.lang.Float">
-            <column name="totalPrice" precision="12" scale="0" />
-        </property>
-    </class>
+  <class catalog="bookstore" name="pojo.Cart" optimistic-lock="version" table="cart">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="totalPrice" type="java.lang.Float">
+      <column name="totalPrice" precision="12" scale="0"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cartdetails" table="cartdetail">
+      <key>
+        <column name="cartId"/>
+      </key>
+      <one-to-many class="pojo.CartDetail"/>
+    </set>
+  </class>
 </hibernate-mapping>
