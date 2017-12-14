@@ -1,191 +1,743 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header_admin.jsp"></jsp:include>
     
     
-<c:if test="${sessionScope.success == 'true'}">
-    <script>
-        alert("Thanh toán thành công! Ti?p t?c mua hàng")
-    </script>
-    <c:set scope="session" var="success" value="false" />
-    <%--<c:remove var="check" scope="session" />--%>
-</c:if>
-  
-<c:if test="${sessionScope.check == 'true'}">
-    <script>
-        alert("Thêm giỏ hàng thành công! Ti?p t?c mua hàng")
-    </script>
-    <c:set scope="session" var="check" value="false" />
-    <%--<c:remove var="check" scope="session" />--%>
-</c:if>
-<div class="slider-area">
-    <div class="zigzag-bottom"></div>
-    <div id="slide-list" class="carousel carousel-fade slide" data-ride="carousel">
-
-        <div class="slide-bulletz">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <ol class="carousel-indicators slide-indicators">
-                            <li data-target="#slide-list" data-slide-to="0" class="active"></li>
-                            <li data-target="#slide-list" data-slide-to="1"></li>
-                            <li data-target="#slide-list" data-slide-to="2"></li>
-                        </ol>                            
-                    </div>
+ <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Tables</h1>
                 </div>
+                <!-- /.col-lg-12 -->
             </div>
-        </div>
-
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <div class="single-slide">
-                    <div class="slide-bg slide-one"></div>
-                    <div class="slide-text-wrapper">
-                        <div class="slide-text">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-6 col-md-offset-6">
-                                        <div class="slide-content">
-                                            <h2>Are you finding some books?</h2>
-                                            <p>At this site you'll find that there are many communities made specifically online for book lovers of any possible genre, 
-                                                whether to buy, browser, or talk about the books that have impacted your life. </p>
-                                            <a href="" class="readmore">Learn more</a>
-                                        </div>
-                                    </div>
-                                </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            DataTables Advanced Tables
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>Rendering engine</th>
+                                        <th>Browser</th>
+                                        <th>Platform(s)</th>
+                                        <th>Engine version</th>
+                                        <th>CSS grade</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd gradeX">
+                                        <td>Trident</td>
+                                        <td>Internet Explorer 4.0</td>
+                                        <td>Win 95+</td>
+                                        <td class="center">4</td>
+                                        <td class="center">X</td>
+                                    </tr>
+                                    <tr class="even gradeC">
+                                        <td>Trident</td>
+                                        <td>Internet Explorer 5.0</td>
+                                        <td>Win 95+</td>
+                                        <td class="center">5</td>
+                                        <td class="center">C</td>
+                                    </tr>
+                                    <tr class="odd gradeA">
+                                        <td>Trident</td>
+                                        <td>Internet Explorer 5.5</td>
+                                        <td>Win 95+</td>
+                                        <td class="center">5.5</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="even gradeA">
+                                        <td>Trident</td>
+                                        <td>Internet Explorer 6</td>
+                                        <td>Win 98+</td>
+                                        <td class="center">6</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="odd gradeA">
+                                        <td>Trident</td>
+                                        <td>Internet Explorer 7</td>
+                                        <td>Win XP SP2+</td>
+                                        <td class="center">7</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="even gradeA">
+                                        <td>Trident</td>
+                                        <td>AOL browser (AOL desktop)</td>
+                                        <td>Win XP</td>
+                                        <td class="center">6</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Firefox 1.0</td>
+                                        <td>Win 98+ / OSX.2+</td>
+                                        <td class="center">1.7</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Firefox 1.5</td>
+                                        <td>Win 98+ / OSX.2+</td>
+                                        <td class="center">1.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Firefox 2.0</td>
+                                        <td>Win 98+ / OSX.2+</td>
+                                        <td class="center">1.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Firefox 3.0</td>
+                                        <td>Win 2k+ / OSX.3+</td>
+                                        <td class="center">1.9</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Camino 1.0</td>
+                                        <td>OSX.2+</td>
+                                        <td class="center">1.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Camino 1.5</td>
+                                        <td>OSX.3+</td>
+                                        <td class="center">1.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Netscape 7.2</td>
+                                        <td>Win 95+ / Mac OS 8.6-9.2</td>
+                                        <td class="center">1.7</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Netscape Browser 8</td>
+                                        <td>Win 98SE+</td>
+                                        <td class="center">1.7</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Netscape Navigator 9</td>
+                                        <td>Win 98+ / OSX.2+</td>
+                                        <td class="center">1.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.0</td>
+                                        <td>Win 95+ / OSX.1+</td>
+                                        <td class="center">1</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.1</td>
+                                        <td>Win 95+ / OSX.1+</td>
+                                        <td class="center">1.1</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.2</td>
+                                        <td>Win 95+ / OSX.1+</td>
+                                        <td class="center">1.2</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.3</td>
+                                        <td>Win 95+ / OSX.1+</td>
+                                        <td class="center">1.3</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.4</td>
+                                        <td>Win 95+ / OSX.1+</td>
+                                        <td class="center">1.4</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.5</td>
+                                        <td>Win 95+ / OSX.1+</td>
+                                        <td class="center">1.5</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.6</td>
+                                        <td>Win 95+ / OSX.1+</td>
+                                        <td class="center">1.6</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.7</td>
+                                        <td>Win 98+ / OSX.1+</td>
+                                        <td class="center">1.7</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.8</td>
+                                        <td>Win 98+ / OSX.1+</td>
+                                        <td class="center">1.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Seamonkey 1.1</td>
+                                        <td>Win 98+ / OSX.2+</td>
+                                        <td class="center">1.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Epiphany 2.20</td>
+                                        <td>Gnome</td>
+                                        <td class="center">1.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Webkit</td>
+                                        <td>Safari 1.2</td>
+                                        <td>OSX.3</td>
+                                        <td class="center">125.5</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Webkit</td>
+                                        <td>Safari 1.3</td>
+                                        <td>OSX.3</td>
+                                        <td class="center">312.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Webkit</td>
+                                        <td>Safari 2.0</td>
+                                        <td>OSX.4+</td>
+                                        <td class="center">419.3</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Webkit</td>
+                                        <td>Safari 3.0</td>
+                                        <td>OSX.4+</td>
+                                        <td class="center">522.1</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Webkit</td>
+                                        <td>OmniWeb 5.5</td>
+                                        <td>OSX.4+</td>
+                                        <td class="center">420</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Webkit</td>
+                                        <td>iPod Touch / iPhone</td>
+                                        <td>iPod</td>
+                                        <td class="center">420.1</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Webkit</td>
+                                        <td>S60</td>
+                                        <td>S60</td>
+                                        <td class="center">413</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Opera 7.0</td>
+                                        <td>Win 95+ / OSX.1+</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Opera 7.5</td>
+                                        <td>Win 95+ / OSX.2+</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Opera 8.0</td>
+                                        <td>Win 95+ / OSX.2+</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Opera 8.5</td>
+                                        <td>Win 95+ / OSX.2+</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Opera 9.0</td>
+                                        <td>Win 95+ / OSX.3+</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Opera 9.2</td>
+                                        <td>Win 88+ / OSX.3+</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Opera 9.5</td>
+                                        <td>Win 88+ / OSX.3+</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Opera for Wii</td>
+                                        <td>Wii</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Nokia N800</td>
+                                        <td>N800</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Nintendo DS browser</td>
+                                        <td>Nintendo DS</td>
+                                        <td class="center">8.5</td>
+                                        <td class="center">C/A<sup>1</sup>
+                                        </td>
+                                    </tr>
+                                    <tr class="gradeC">
+                                        <td>KHTML</td>
+                                        <td>Konqureror 3.1</td>
+                                        <td>KDE 3.1</td>
+                                        <td class="center">3.1</td>
+                                        <td class="center">C</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>KHTML</td>
+                                        <td>Konqureror 3.3</td>
+                                        <td>KDE 3.3</td>
+                                        <td class="center">3.3</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>KHTML</td>
+                                        <td>Konqureror 3.5</td>
+                                        <td>KDE 3.5</td>
+                                        <td class="center">3.5</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                        <td>Tasman</td>
+                                        <td>Internet Explorer 4.5</td>
+                                        <td>Mac OS 8-9</td>
+                                        <td class="center">-</td>
+                                        <td class="center">X</td>
+                                    </tr>
+                                    <tr class="gradeC">
+                                        <td>Tasman</td>
+                                        <td>Internet Explorer 5.1</td>
+                                        <td>Mac OS 7.6-9</td>
+                                        <td class="center">1</td>
+                                        <td class="center">C</td>
+                                    </tr>
+                                    <tr class="gradeC">
+                                        <td>Tasman</td>
+                                        <td>Internet Explorer 5.2</td>
+                                        <td>Mac OS 8-X</td>
+                                        <td class="center">1</td>
+                                        <td class="center">C</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Misc</td>
+                                        <td>NetFront 3.1</td>
+                                        <td>Embedded devices</td>
+                                        <td class="center">-</td>
+                                        <td class="center">C</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Misc</td>
+                                        <td>NetFront 3.4</td>
+                                        <td>Embedded devices</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                        <td>Misc</td>
+                                        <td>Dillo 0.8</td>
+                                        <td>Embedded devices</td>
+                                        <td class="center">-</td>
+                                        <td class="center">X</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                        <td>Misc</td>
+                                        <td>Links</td>
+                                        <td>Text only</td>
+                                        <td class="center">-</td>
+                                        <td class="center">X</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                        <td>Misc</td>
+                                        <td>Lynx</td>
+                                        <td>Text only</td>
+                                        <td class="center">-</td>
+                                        <td class="center">X</td>
+                                    </tr>
+                                    <tr class="gradeC">
+                                        <td>Misc</td>
+                                        <td>IE Mobile</td>
+                                        <td>Windows Mobile 6</td>
+                                        <td class="center">-</td>
+                                        <td class="center">C</td>
+                                    </tr>
+                                    <tr class="gradeC">
+                                        <td>Misc</td>
+                                        <td>PSP browser</td>
+                                        <td>PSP</td>
+                                        <td class="center">-</td>
+                                        <td class="center">C</td>
+                                    </tr>
+                                    <tr class="gradeU">
+                                        <td>Other browsers</td>
+                                        <td>All others</td>
+                                        <td>-</td>
+                                        <td class="center">-</td>
+                                        <td class="center">U</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
+                            <div class="well">
+                                <h4>DataTables Usage Information</h4>
+                                <p>DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a specialized version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font Awesome icons in place of images. For complete documentation on DataTables, visit their website at <a target="_blank" href="https://datatables.net/">https://datatables.net/</a>.</p>
+                                <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">View DataTables Documentation</a>
                             </div>
                         </div>
+                        <!-- /.panel-body -->
                     </div>
+                    <!-- /.panel -->
                 </div>
+                <!-- /.col-lg-12 -->
             </div>
-            <div class="item">
-                <div class="single-slide">
-                    <div class="slide-bg slide-two"></div>
-                    <div class="slide-text-wrapper">
-                        <div class="slide-text">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-6 col-md-offset-6">
-                                        <div class="slide-content">
-                                            <h2>You are looking for a site offer books in a variety of formats?</h2>
-                                            <p> Whether you're looking for a textbook, a comic book, a romance, or a cookbook, the chances are very good 
-                                                that you'll find it with one of the book websites listed below. </p>
-                                            <a href="" class="readmore">Learn more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Kitchen Sink
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="single-slide">
-                    <div class="slide-bg slide-three"></div>
-                    <div class="slide-text-wrapper">
-                        <div class="slide-text">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-6 col-md-offset-6">
-                                        <div class="slide-content">
-                                            <h2>You love talking about books?</h2>
-                                            <p>This site offer the reader a chance to get involved in discussion, reviews, and active conversation; 
-                                                in addition, buying books on the Web can end up in some serious savings, not to mention the amazing variety that is available to you.</p>
-                                            <a href="" class="readmore">Learn more</a>
-                                        </div>
-                                    </div>
-                                </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Username</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                            <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
+                            <!-- /.table-responsive -->
                         </div>
+                        <!-- /.panel-body -->
                     </div>
+                    <!-- /.panel -->
                 </div>
-            </div>
-        </div>
-
-    </div>        
-</div> <!-- End slider area -->
-
-<div class="promo-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-6">
-                <div class="single-promo">
-                    <i class="fa fa-refresh"></i>
-                    <p>3 Days return</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="single-promo">
-                    <i class="fa fa-truck"></i>
-                    <p>Free shipping</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="single-promo">
-                    <i class="fa fa-lock"></i>
-                    <p>Secure payments</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="single-promo">
-                    <i class="fa fa-gift"></i>
-                    <p>New Books</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> <!-- End promo area -->
-
-<div class="maincontent-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="latest-product">
-                    <h2 class="section-title">Best Sellers</h2>
-                    <div class="product-carousel">
-                        <c:forEach var="item" items="${ListBook}">
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="${item.getImageLink()}" alt="">
-                                    <div class="product-hover">
-                                        <a href="${pageContext.request.contextPath}/cart/add-id=${item.getId()}-quantity=1" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="${pageContext.request.contextPath}/detail/book-${item.getId()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-
-                                <h2><a href="${pageContext.request.contextPath}/detail/book-${item.getId()}"> ${item.getTitle()}</a></h2>
-
-                                <div class="product-carousel-price">
-                                    <ins> $${item.getPrice()}</ins>
-                                </div> 
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Basic Table
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Username</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                            <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                        </c:forEach>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
                     </div>
+                    <!-- /.panel -->
                 </div>
+                <!-- /.col-lg-6 -->
             </div>
-        </div>
-    </div>
-</div> <!-- End main content area -->
-
-<div class="brands-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="brand-wrapper">
-                    <h2 class="section-title">Popular Publishers</h2>
-                    <div class="brand-list">
-                        <img src="/WebsiteBook/resources/image/Brand/1.jpg" alt=""/>
-                        <img src="/WebsiteBook/resources/image/Brand/2.jpg" alt=""/>
-                        <img src="/WebsiteBook/resources/image/Brand/3.jpg" alt=""/>
-                        <img src="/WebsiteBook/resources/image/Brand/4.jpg" alt=""/>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Striped Rows
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Username</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                            <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
                     </div>
+                    <!-- /.panel -->
                 </div>
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Bordered Table
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive table-bordered">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Username</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                            <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
             </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Hover Rows
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Username</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                            <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Context Classes
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Username</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="success">
+                                            <td>1</td>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr class="info">
+                                            <td>2</td>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                        </tr>
+                                        <tr class="warning">
+                                            <td>3</td>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                            <td>@twitter</td>
+                                        </tr>
+                                        <tr class="danger">
+                                            <td>4</td>
+                                            <td>John</td>
+                                            <td>Smith</td>
+                                            <td>@jsmith</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+            </div>
+            <!-- /.row -->
         </div>
-    </div>
-</div> <!-- End brands area -->
-<jsp:include page="footer.jsp"></jsp:include>
+        <!-- /#page-wrapper -->
+<jsp:include page="footer_admin.jsp"></jsp:include>
