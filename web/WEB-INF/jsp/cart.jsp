@@ -74,7 +74,7 @@
                 <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="woocommerce">
-                            <form method="post" action="checkout">
+                            <form method="POST" action="cartcheckout">
                             
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
@@ -114,10 +114,6 @@
                                         </td>
                                     </tr>
                                     </c:forEach>
-                                    
-                                    
-
-
                                     <tr>
                                         <td class="actions" colspan="6">
                                             <input type="submit" value="Update Cart" name="update_cart" class="button">

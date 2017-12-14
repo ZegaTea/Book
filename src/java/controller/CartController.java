@@ -109,6 +109,13 @@ public class CartController {
         return "redirect:/cart/detail";
     }
     
+    @RequestMapping(value = "/pre-order", method = RequestMethod.POST)
+    public String preOrder(ModelMap mm, HttpServletRequest httpServletRequest){
+        HttpSession session = httpServletRequest.getSession();
+        mm.put("cart", session.getAttribute(Constant.CART_SESSION));
+        return "checkout";
+    }
+    
     @RequestMapping(value = "/checkout" , method = RequestMethod.POST)
     public String checkout(HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
@@ -140,5 +147,20 @@ public class CartController {
         session.removeAttribute(Constant.CART_SESSION);
         session.setAttribute(Constant.CHECKOUT_SESSION, "true");
         return  "redirect:/home/index";
+    }
+    
+    
+    @RequestMapping(value = "cartcheckout", method = RequestMethod.POST)
+    public String cartCheckout(ModelMap mm, HttpServletRequest httpServletRequest){
+        HttpSession session = httpServletRequest.getSession();
+        mm.put("cart", session.getAttribute(Constant.CART_SESSION));
+        return "checkout";
+    }
+    
+    @RequestMapping(value = "cartcheckout", method = RequestMethod.GET)
+    public String cartCheckoutGet(ModelMap mm, HttpServletRequest httpServletRequest){
+        HttpSession session = httpServletRequest.getSession();
+        mm.put("cart", session.getAttribute(Constant.CART_SESSION));
+        return "checkout";
     }
 }
