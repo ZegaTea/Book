@@ -3,37 +3,43 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Dec 15, 2017 12:20:36 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="pojo.Book" table="Book" catalog="BookStore" optimistic-lock="version">
-        <id name="id" type="java.lang.Integer">
-            <column name="id" />
-            <generator class="identity" />
-        </id>
-        <property name="title" type="string">
-            <column name="title" />
-        </property>
-        <property name="price" type="java.lang.Float">
-            <column name="price" precision="12" scale="0" />
-        </property>
-        <property name="author" type="string">
-            <column name="author" />
-        </property>
-        <property name="publisher" type="string">
-            <column name="publisher" />
-        </property>
-        <property name="description" type="string">
-            <column name="description" length="500" />
-        </property>
-        <property name="categoryId" type="java.lang.Integer">
-            <column name="categoryId" />
-        </property>
-        <property name="imageLink" type="string">
-            <column name="imageLink" length="500" />
-        </property>
-        <property name="chapterNum" type="java.lang.Integer">
-            <column name="chapterNum" />
-        </property>
-        <property name="numOfBooks" type="java.lang.Integer">
-            <column name="numOfBooks" />
-        </property>
-    </class>
+  <class catalog="bookstore" name="pojo.Book" optimistic-lock="version" table="book">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="pojo.Category" fetch="select" name="category">
+      <column name="categoryId"/>
+    </many-to-one>
+    <property name="title" type="string">
+      <column name="title"/>
+    </property>
+    <property name="price" type="java.lang.Float">
+      <column name="price" precision="12" scale="0"/>
+    </property>
+    <property name="author" type="string">
+      <column name="author"/>
+    </property>
+    <property name="publisher" type="string">
+      <column name="publisher"/>
+    </property>
+    <property name="description" type="string">
+      <column length="500" name="description"/>
+    </property>
+    <property name="imageLink" type="string">
+      <column length="500" name="imageLink"/>
+    </property>
+    <property name="chapterNum" type="java.lang.Integer">
+      <column name="chapterNum"/>
+    </property>
+    <property name="numOfBooks" type="java.lang.Integer">
+      <column name="numOfBooks"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="cartdetails" table="cartdetail">
+      <key>
+        <column name="bookId"/>
+      </key>
+      <one-to-many class="pojo.CartDetail"/>
+    </set>
+  </class>
 </hibernate-mapping>
