@@ -25,7 +25,11 @@
 
     <!-- MetisMenu CSS -->
     <link href="<c:url value="/resources/admin/vendor/metisMenu/metisMenu.min.css" />" rel="stylesheet" type="text/css">
+     <!-- DataTables CSS -->
+    <link href="<c:url value="/resources/admin/vendor/datatables-plugins/dataTables.bootstrap.css" />" rel="stylesheet" type="text/css">
 
+    <!-- DataTables Responsive CSS -->
+    <link href="<c:url value="/resources/admin/vendor/datatables-responsive/dataTables.responsive.css" />" rel="stylesheet" type="text/css">
     <!-- Custom CSS -->
     <link href="<c:url value="/resources/admin/dist/css/sb-admin-2.css" />" rel="stylesheet" type="text/css">
 
@@ -286,17 +290,27 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>Quản lý sách</a>
+                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>Book Management<span class="fa arrow"></span></a>
                          <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="panels-wells.html">Danh sách</a>
+                                    <a href="${pageContext.request.contextPath}/admin/book/bookmanagement">List</a>
                                 </li>
                                 <li>
-                                    <a href="buttons.html">Thêm mới</a>
+                                    <a href="${pageContext.request.contextPath}/admin/book/AddBook?err">Add new</a>
                                 </li>
                          </ul>
                         </li>
-                      
+                      <li>
+                        <a href="index.html"><i class="fa fa-edit fa-fw"></i>Category Management<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/admin/category/categorymanagement">List</a>
+                                </li>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/admin/category/AddCategory">Add new</a>
+                                </li>
+                         </ul>
+                        </li>
                         <li>
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i>Quản lý đơn hàng</a>
                         </li>

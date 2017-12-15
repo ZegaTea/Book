@@ -5,10 +5,12 @@
  */
 package dao;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import pojo.Book;
 import utils.BookHibernateUtil;
 
@@ -78,7 +80,143 @@ public class BookDAO {
     }
 
     public static List<Book> getAllBooks_admin() {
-        List<Book> result = new ArrayList<>();
-        return result;
+        Session session = BookHibernateUtil.getSessionFactory().openSession();
+        List<Book> books = null;
+        try {
+            String sql = "select * from Book";
+            books =  session.createSQLQuery(sql).addEntity(Book.class).list();
+        } catch (Exception e) {
+            
+        } finally {
+            session.close();
+        }
+        return books;
     }
+    public static int addBook(
+     
+      String title,
+      Float price,
+      String author,
+      String publisher,
+      String description,
+      Integer categoryId,
+      String imageLink,
+      Integer chapterNum,
+      Integer numOfBooks  ){
+        int check = 0;
+        Session session = BookHibernateUtil.getSessionFactory().openSession();
+        Transaction tran = session.beginTransaction();
+        try {
+            Book b = new Book(                
+                 title,
+                 price,
+                 author,
+                 publisher,
+                 description,
+                 categoryId,
+                 imageLink,
+                 chapterNum,
+                 numOfBooks 
+            );
+            
+            session.save(b);
+            tran.commit();
+            check = 1;
+        } catch (Exception e) {
+            tran.rollback();
+
+        } finally {
+            session.close();
+        }
+        return check;
+    }
+    public static int editBook(
+      Integer id,
+      String title,
+      Float price,
+      String author,
+      String publisher,
+      String description,
+      Integer categoryId,
+      String imageLink,
+      Integer chapterNum,
+      Integer numOfBooks  ){
+        int check = 0;
+        Session session = BookHibernateUtil.getSessionFactory().openSession();
+        Transaction tran = session.beginTransaction();
+        try {
+            Book b = new Book(
+                   
+                 title,
+                 price,
+                 author,
+                 publisher,
+                 description,
+                 categoryId,
+                 imageLink,
+                 chapterNum,
+                 numOfBooks 
+            );
+            b.setId(id);
+            
+            session.update(b);
+            tran.commit();
+            check = 1;
+        } catch (Exception e) {
+            tran.rollback();
+
+        } finally {
+            session.close();
+        }
+        return check;
+    }
+     public static int deleteBook (int id) {
+        int check = 0;
+        Session session = BookHibernateUtil.getSessionFactory().openSession();
+        Transaction tran = session.beginTransaction();
+        try {
+            Book b = new Book();
+            b = getBookById(id);
+            session.delete(b);
+            tran.commit();
+            check = 1;
+        } catch (Exception e) {
+            tran.rollback();
+        } finally {
+            session.close();
+        }
+        return check;
+    }
+       public static List<Book> getBooksByCategoryId(int categoryId) {
+        Session session = BookHibernateUtil.getSessionFactory().openSession();
+        List<Book> books = new ArrayList<>();
+        try {
+            String hql = "from Book b where b.categoryId = " + categoryId ;
+            books = session.createQuery(hql).list();
+        } catch (Exception e) {
+
+        } finally {
+            session.close();
+        }
+
+        return books;
+    }
+     public static int deleteBookByCategory (int id) {
+        int check = 0;
+        Session session = BookHibernateUtil.getSessionFactory().openSession();
+        Transaction tran = session.beginTransaction();
+        try {
+            for(Book b: getBooksByCategoryId(id)){
+              session.delete(b);  
+            }         
+            tran.commit();
+            check = 1;
+        } catch (Exception e) {
+            tran.rollback();
+        } finally {
+            session.close();
+        }
+        return check;
+    }
+
 }
