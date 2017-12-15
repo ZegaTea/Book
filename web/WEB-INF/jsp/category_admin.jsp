@@ -8,8 +8,8 @@
  <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Book Management</h1>
-                    <div style="margin-bottom: 10px">  <button type="button" class="btn btn-outline btn-info"><a href="${pageContext.request.contextPath}/admin/book/AddBook?err" >Add</a></button></div>
+                    <h1 class="page-header">Category Management</h1>
+                    <div style="margin-bottom: 10px">  <button type="button" class="btn btn-outline btn-info"><a href="${pageContext.request.contextPath}/admin/category/AddCategory" >Add</a></button></div>
                
                 </div>
             
@@ -27,33 +27,22 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>Title</th>
-                                        <th>Image</th>
-                                        <th>Price</th>                                      
-                                        <th>Author</th>
-                                        <th>Publisher</th>
-                                        <th>Chaper number</th>
-                                        <th>Pages number</th>
-                                        <th>Kind</th>
+                                        <th>Name</th>
+                                        
                                         <th></th>
+                                       
                                         
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach var="item" items="${ListBook}"> 
+                                    <c:forEach var="item" items="${ListCategory}"> 
                                     
 
                                     <tr class="odd gradeX">
-                                        <td>${item.getTitle()}</td>
-                                        <td class="center"><img src="${item.getImageLink()}" alt="" style="width: 70px;height:100px; "></td>
-                                        <td class="center">${item.getPrice()}</td>
-                                        <td>${item.getAuthor()}</td>
-                                        <td>${item.getPublisher()}</td>
-                                        <td class="center">${item.getChapterNum()}</td>
-                                        <td class="center">${item.getNumOfBooks()}</td>
-                                        <td>${ListCate.stream().filter(x->x.getId()==item.getCategoryId()).findFirst().get().getName()}</td>                               
+                                        <td>${item.getName()}</td>
+                                      
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/admin/book/EditBook-${item.getId()}?err" class="btn btn-xs btn-primary btn-block">Edit</a>
+                                            <a href="${pageContext.request.contextPath}/admin/category/EditCategory-${item.getId()}" class="btn btn-xs btn-primary btn-block">Edit</a>
                                            
                                             <a  data-toggle="modal" data-target="#myModal" class="btn btn-xs btn-danger btn-block">
                                             Delete
@@ -70,7 +59,7 @@
                                                            Are you sure?
                                                         </div>
                                                         <div class="modal-footer">
-                                                             <button type="button" class="btn btn-danger"><a href="${pageContext.request.contextPath}/admin/book/DeleteBook/${item.getId()}" >Yes</a></button>
+                                                             <button type="button" class="btn btn-danger"><a href="${pageContext.request.contextPath}/admin/category/DeleteCategory/${item.getId()}" >Yes</a></button>
                                                             <button type="button" class="btn btn-primary">No</button>
                                                         </div>
                                                     </div>
@@ -79,7 +68,7 @@
                                                 <!-- /.modal-dialog -->
                                             </div>
                                         </td>
-                                           </tr>
+                                    </tr>
                                     </c:forEach>                                  
                                 </tbody>
                             </table>
