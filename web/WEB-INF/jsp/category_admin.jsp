@@ -42,9 +42,9 @@
                                         <td>${item.getName()}</td>
                                       
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/admin/category/EditCategory-${item.getId()}" class="btn btn-xs btn-primary btn-block">Edit</a>
+                                            <a style="width: 50px" href="${pageContext.request.contextPath}/admin/category/EditCategory-${item.getId()}" class="btn btn-xs btn-primary btn-block">Edit</a>
                                            
-                                            <a  data-toggle="modal" data-target="#myModal" class="btn btn-xs btn-danger btn-block">
+                                            <a style="width: 50px" data-toggle="modal" data-target="#myModal" class="btn btn-xs btn-danger btn-block">
                                             Delete
                                             </a>
                                             <!-- Modal -->
@@ -59,8 +59,8 @@
                                                            Are you sure?
                                                         </div>
                                                         <div class="modal-footer">
-                                                             <button type="button" class="btn btn-danger"><a href="${pageContext.request.contextPath}/admin/category/DeleteCategory/${item.getId()}" >Yes</a></button>
-                                                            <button type="button" class="btn btn-primary">No</button>
+                                                            <button type="button" class="btn btn-danger" ><a href="${pageContext.request.contextPath}/admin/category/DeleteCategory/${item.getId()}" >Yes</a></button>
+                                                            <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
                                                         </div>
                                                     </div>
                                                     <!-- /.modal-content -->
