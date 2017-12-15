@@ -36,5 +36,25 @@ public class LoginDAO {
         }
     }
     
+    
+    public static int checkUserLogin(String username, String password){
+        Session session = BookHibernateUtil.getSessionFactory().openSession();
+        List<User> lst = new ArrayList<User>();
+        try {
+            String hql = " from User where username =  '"+username+"' and password = '"+password+"'";
+            lst = session.createQuery(hql).list();
+        } catch (Exception e) {
+
+        } finally {
+            session.close();
+        }
+
+        if(lst.size() == 1){
+            return lst.get(0).getId();
+        } else {
+            return  -1;
+        }
+    }
+    
 
 }

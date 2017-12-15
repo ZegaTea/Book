@@ -21,36 +21,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(value = "/admin")
 public class LoginController {
+
     
-    @RequestMapping(value = "/login")
-    public String login(){
-        return "login";
-    }
-    
-     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String checkLogin(@RequestParam(value = "username", required = true) String username
-    ,@RequestParam(value = "password", required = true) String password){
-        boolean isSuccess = LoginDAO.checkLogin(username, password);
-        if(isSuccess){
-            return "index";
-        }else{
-            return "login";
-        }
-    }
-     @RequestMapping(value = "/loginAdmin")
-    public String login_admin(){
+
+    @RequestMapping(value = "/loginAdmin")
+    public String login_admin() {
         return "login_admin";
     }
-    
-     @RequestMapping(value = "/loginAdmin", method = RequestMethod.POST)
-    public String checkLogin_admin(@RequestParam(value = "username", required = true) String username
-    ,@RequestParam(value = "password", required = true) String password, HttpServletRequest request){
+
+    @RequestMapping(value = "/loginAdmin", method = RequestMethod.POST)
+    public String checkLogin_admin(@RequestParam(value = "username", required = true) String username,
+             @RequestParam(value = "password", required = true) String password, HttpServletRequest request) {
         boolean isSuccess = LoginDAO.checkLogin(username, password);
-        if(isSuccess){
-             HttpSession session = request.getSession();
-             session.setAttribute(Constant.LOGIN_SESSION, true);
+        if (isSuccess) {
+            HttpSession session = request.getSession();
+            session.setAttribute(Constant.LOGIN_SESSION, true);
             return "redirect:/admin/book/bookmanagement";
-        }else{
+        } else {
             return "login_admin";
         }
     }

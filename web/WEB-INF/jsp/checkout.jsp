@@ -19,7 +19,7 @@
                                 <c:forEach var="item" items="${cart}">
                                     <tr class="cart_item">
                                         <td class="product-name">${item.getTitle()}<strong class="product-quantity"> × ${item.getQuantity()}</strong> </td>
-                                        <td class="product-total"><span class="amount">$${item.getQuantity * item.getPrice()}</span> </td>
+                                        <td class="product-total"><span class="amount">$${item.getQuantity() * item.getPrice()}</span> </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -50,19 +50,19 @@
                 <form action="checkout" method="POST">
                     <div class="form-group">
                         <label>Name</label>
-                        <input name="ten" class="form-control" value="@user.tenNguoiDung"/>
+                        <input name="ten" class="form-control" required="true"/>
                     </div>
                     <div class="form-group">
                         <label>Phone Number</label>
-                        <input name="sdt" class="form-control" value="@user.soDienThoai"/>
+                        <input type="number" name="sdt" class="form-control" required="true"/>
                     </div>
                     <div class="form-group">
                         <label>Address</label>
-                        <input name="diachi" class="form-control" value="@user.diaChi" />
+                        <input name="diachi" class="form-control" required="true"/>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input name="email" class="form-control" value="@user.email" />
+                        <input type="email" name="email" class="form-control" required="true"/>
                     </div>
                     <button type="submit" class="btn">Checkout</button>
                 </form>

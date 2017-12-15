@@ -3,21 +3,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="newjsp.jsp"></jsp:include>
-    <c:if test="${sessionScope.success == 'true'}">
-        <script>
-            alert("Thanh toán thành công! Ti?p t?c mua hàng")
-        </script>
-        <c:set scope="session" var="success" value="false" />
-        <%--<c:remove var="check" scope="session" />--%>
-    </c:if>
-
-    <c:if test="${sessionScope.check == 'true'}">
-        <script>
-            alert("Thêm giỏ hàng thành công! Ti?p t?c mua hàng")
-        </script>
-        <c:set scope="session" var="check" value="false" />
-        <%--<c:remove var="check" scope="session" />--%>
-    </c:if>
+    
     <div class="slider-area">
         <div class="zigzag-bottom"></div>
         <div id="slide-list" class="carousel carousel-fade slide" data-ride="carousel">

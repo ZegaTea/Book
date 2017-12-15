@@ -71,6 +71,21 @@
             })
 
         </script>
+        <c:if test="${sessionScope.success == 'true'}">
+            <script>
+                alert("Thanh toán thành công! Ti?p t?c mua hàng")
+            </script>
+            <c:set scope="session" var="success" value="false" />
+            <%--<c:remove var="check" scope="session" />--%>
+        </c:if>
+
+        <c:if test="${sessionScope.check == 'true'}">
+            <script>
+                alert("Thêm giỏ hàng thành công! Ti?p t?c mua hàng")
+            </script>
+            <c:set scope="session" var="check" value="false" />
+            <%--<c:remove var="check" scope="session" />--%>
+        </c:if>
         <!--<link href="../resources/css/style1login.css" rel="stylesheet" type="text/css"/>-->
     </head>
     <body>
@@ -84,7 +99,7 @@
                                 <!--<li><a id="modal_trigger" href="#modal"><i class="fa fa-user"></i> My Account</a></li>-->
                                 <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
                                 <li><a href="${pageContext.request.contextPath}/cart/detail"><i class="fa fa-user"></i> My Cart</a></li>
-                                <li><a href="${pageContext.request.contextPath}/cart/cartcheckout"><i class="fa fa-user"></i> Checkout</a></li>
+                                <li><a href="${pageContext.request.contextPath}/cart/checkout"><i class="fa fa-user"></i> Checkout</a></li>
                                 <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
                             </ul>
                         </div>
@@ -134,9 +149,8 @@
                                     </c:when>
                                     <c:otherwise>
                                     <a href="${pageContext.request.contextPath}/cart/detail">Cart - <span class="cart-amunt">0</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">0</span></a>
-                                    </c:otherwise>
-                                </c:choose>
-
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                 </div>
@@ -157,8 +171,8 @@
                     <div class="ddsmoothmenu" id="smoothmenu1" >
                         <ul>
                             <li class="active"><a href="${pageContext.request.contextPath}/home/index">Home</a></li>
-                            <li><a href="shop.jsp">Shop page</a></li>
-                            <li><a href="${pageContext.request.contextPath}/cart/cartcheckout">Checkout</a></li>
+                            <li><a href="${pageContext.request.contextPath}/home/item-page=1">Shop page</a></li>
+                            <li><a href="${pageContext.request.contextPath}/cart/checkout">Checkout</a></li>
 
                         </ul>
                     </div>  

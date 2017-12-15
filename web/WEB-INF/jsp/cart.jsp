@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp"></jsp:include>   
+<jsp:include page="newjsp.jsp"></jsp:include>
 
     <div class="product-big-title-area">
         <div class="container">
@@ -74,50 +75,50 @@
                 <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="woocommerce">
-                            <form method="POST" action="cartcheckout">
-                            
-                            <table cellspacing="0" class="shop_table cart">
-                                <thead>
-                                    <tr>
-                                        <th class="product-remove">&nbsp;</th>
-                                        <th class="product-thumbnail">&nbsp;</th>
-                                        <th class="product-name">Product</th>
-                                        <th class="product-price">Price</th>
-                                        <th class="product-quantity">Quantity</th>
-                                        <th class="product-subtotal">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                
+                            <form method="GET" action="checkout">
+
+                                <table cellspacing="0" class="shop_table cart">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-remove">&nbsp;</th>
+                                            <th class="product-thumbnail">&nbsp;</th>
+                                            <th class="product-name">Product</th>
+                                            <th class="product-price">Price</th>
+                                            <th class="product-quantity">Quantity</th>
+                                            <th class="product-subtotal">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
                                     <c:forEach var="item" items="${CartBook}">
                                         <tr class="cart_item">
-                                        <td class="product-remove">
-                                            <a title="Remove this item" class="remove" href="${pageContext.request.contextPath}/cart/remove-${item.getId()}">×</a>
-                                        </td>  
-                                        <td class="product-thumbnail">
-                                            <a href="${pageContext.request.contextPath}/detail/book-${item.getId()}"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="${item.getImageLink()}"></a>
-                                        </td>
+                                            <td class="product-remove">
+                                                <a title="Remove this item" class="remove" href="${pageContext.request.contextPath}/cart/remove-${item.getId()}">×</a>
+                                            </td>  
+                                            <td class="product-thumbnail">
+                                                <a href="${pageContext.request.contextPath}/detail/book-${item.getId()}"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="${item.getImageLink()}"></a>
+                                            </td>
 
-                                        <td class="product-name">
-                                            <a href="${pageContext.request.contextPath}/detail/book-${item.getId()}">${item.getTitle()}</a> 
-                                        </td>
-                                        <td class="product-price">
-                                            <span class="amount">$${item.getPrice()}</span> 
-                                        </td>
-                                        <td class="product-quantity">
-                                            <div class="quantity buttons_added">
-                                                <input type="number" size="4" class="input-text qty text" title="Qty" value="${item.getQuantity()}" min="0" step="1">
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal">
-                                            <span class="amount"><c:out value="${item.getPrice() * item.getQuantity()}" ></c:out></span> 
-                                        </td>
-                                    </tr>
+                                            <td class="product-name">
+                                                <a href="${pageContext.request.contextPath}/detail/book-${item.getId()}">${item.getTitle()}</a> 
+                                            </td>
+                                            <td class="product-price">
+                                                <span class="amount">$${item.getPrice()}</span> 
+                                            </td>
+                                            <td class="product-quantity">
+                                                <div class="quantity buttons_added">
+                                                    <input type="number" size="4" class="input-text qty text" title="Qty" value="${item.getQuantity()}" min="0" step="1">
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal">
+                                                <span class="amount"><c:out value="${item.getPrice() * item.getQuantity()}" ></c:out></span> 
+                                                </td>
+                                            </tr>
                                     </c:forEach>
                                     <tr>
                                         <td class="actions" colspan="6">
                                             <input type="submit" value="Update Cart" name="update_cart" class="button">
-                                            <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
+                                            <input type="submit"   value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
                                         </td>
                                     </tr>
                                 </tbody>

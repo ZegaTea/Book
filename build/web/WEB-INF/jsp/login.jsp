@@ -15,7 +15,7 @@
 </div>
 <br>
 <div class="login">
-    <form method="POST" action="${pageContext.request.contextPath}/admin/login">
+    <form method="POST" action="login">
         <input type="text" placeholder="username" name="username"><br>
         <input type="password" placeholder="password" name="password"><br>
         <input type="submit" value="Login">

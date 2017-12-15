@@ -7,6 +7,8 @@ package controller;
 
 import dao.BookDAO;
 import dao.CategoryDAO;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -34,5 +36,31 @@ public class HomeController {
         model.put("ListCategory", categories);
 
         return "index";
+    }
+
+    @RequestMapping(value = "/item-page={page}", method = RequestMethod.GET)
+    public String item(ModelMap model, @PathVariable(value = "page") int page) {
+        BookDAO bookDAO = new BookDAO();
+        List<Book> lst = bookDAO.getListBook(page - 1);
+        int si = BookDAO.getAllBooks().size();
+
+        int prev = page - 1;
+        int next = page + 1;
+        int lastPage = si / 3;
+        if (!(lastPage * 3 == si)) {
+            lastPage++;
+        }
+        if (prev < 1) {
+            prev = 1;
+        }
+        if (next > lastPage) {
+            next = lastPage;
+        }
+        model.put("BookCart", lst);
+        model.put("prev", prev);
+        model.put("next", next);
+        model.put("current", page);
+        model.put("lastPage", lastPage);
+        return "shop";
     }
 }

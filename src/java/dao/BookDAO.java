@@ -9,8 +9,11 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 import pojo.Book;
 import utils.BookHibernateUtil;
 
@@ -219,4 +222,16 @@ public class BookDAO {
         return check;
     }
 
+     public List<Book> getListBook(int offset){
+         List<Book> lst = new ArrayList<>();
+         Session session = BookHibernateUtil.getSessionFactory().openSession();
+         Criteria criteria = session
+                 .createCriteria(Book.class)
+                 .addOrder(Order.desc("price"))
+                 .setFirstResult(offset * 3)
+                 .setMaxResults(3);
+         lst =(ArrayList<Book>) criteria.list();
+         return lst;
+     }
+     
 }

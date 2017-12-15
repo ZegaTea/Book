@@ -19,6 +19,9 @@ import pojo.Book;
 import common.*;
 import dao.CartDAO;
 import dao.CartDetailDAO;
+import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,24 +37,27 @@ import pojo.CartDetail;
 public class CartController {
 
     @RequestMapping(value = "/add-id={bookId}-quantity={quantity}", method = RequestMethod.GET)
-    public String addCart(HttpServletRequest request, @PathVariable(value = "bookId") int bookId
-            , @PathVariable(value = "quantity") int quantity) {
-        
+    public String addCart(HttpServletRequest request, @PathVariable(value = "bookId") int bookId,
+            @PathVariable(value = "quantity") int quantity) {
+
         saveSessionCart(bookId, quantity, request);
-            
-        return "redirect:/home/index";
+        String referer = request.getHeader("Referer");
+        
+        
+         
+        return "redirect:" + referer;
     }
-    
+
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addCartWithQuantity(HttpServletRequest request, @RequestParam(value = "id") int bookId
-            , @RequestParam(value = "quantity") int quantity) {
-        
+    public String addCartWithQuantity(HttpServletRequest request, @RequestParam(value = "id") int bookId,
+            @RequestParam(value = "quantity") int quantity) {
+
         saveSessionCart(bookId, quantity, request);
-            
+
         return "redirect:/home/index";
     }
-    
-    public  void saveSessionCart(int bookId, int quantity, HttpServletRequest request){
+
+    public void saveSessionCart(int bookId, int quantity, HttpServletRequest request) {
         Book book = BookDAO.getBookById(bookId);
         BookCartDTO bc = new BookCartDTO(book.getId(), book.getImageLink(), book.getTitle(), book.getPrice(), quantity);
         HttpSession session = request.getSession();
@@ -75,15 +81,14 @@ public class CartController {
                 cart.add(bc);
             }
         }
-        
+
         session.setAttribute(Constant.CART_SESSION, cart);
 //        RequestDispatcher rd = request.getRequestDispatcher("shop.jsp");
 //        response.setAttribute("
 //        rd.forward(request, response);
         session.setAttribute("check", "true");
     }
-    
-    
+
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public String detail(ModelMap mm, HttpServletRequest request) {
         List<BookCartDTO> cart;
@@ -97,70 +102,80 @@ public class CartController {
         mm.put("CartBook", cart);
         return "cart";
     }
+
     @RequestMapping(value = "/remove-{id}", method = RequestMethod.GET)
-    public String remove(@PathVariable(value = "id") int id, HttpServletRequest httpServletRequest){
+    public String remove(@PathVariable(value = "id") int id, HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
         List<BookCartDTO> cart = (ArrayList<BookCartDTO>) session.getAttribute(Constant.CART_SESSION);
-        
+
         cart = cart.stream()
                 .filter(x -> x.getId() != id)
                 .collect(Collectors.toList());
         session.setAttribute(Constant.CART_SESSION, cart);
         return "redirect:/cart/detail";
     }
-    
+
     @RequestMapping(value = "/pre-order", method = RequestMethod.POST)
-    public String preOrder(ModelMap mm, HttpServletRequest httpServletRequest){
+    public String preOrder(ModelMap mm, HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
-        mm.put("cart", session.getAttribute(Constant.CART_SESSION));
-        return "checkout";
+        if (session.getAttribute("userLogin") == null || session.getAttribute("userLogin").equals("-1")) {
+            return "redirect:/user/login";
+        } else {
+            mm.put("cart", session.getAttribute(Constant.CART_SESSION));
+            return "checkout";
+        }
     }
-    
-    @RequestMapping(value = "/checkout" , method = RequestMethod.POST)
-    public String checkout(HttpServletRequest httpServletRequest) {
+
+    @RequestMapping(value = "/checkout", method = RequestMethod.POST)
+    public String checkout(HttpServletRequest httpServletRequest,
+            @RequestParam(value = "ten") String ten,
+            @RequestParam(value = "sdt") String sdt,
+            @RequestParam(value = "diachi") String diachi,
+            @RequestParam(value = "email") String email) {
         HttpSession session = httpServletRequest.getSession();
-        
-        List<BookCartDTO> cart ;
+
+        List<BookCartDTO> cart;
         if (session.getAttribute(Constant.CART_SESSION) != null) {
             cart = (ArrayList<BookCartDTO>) session.getAttribute(common.Constant.CART_SESSION);
-            
+
             float cost = cart.stream()
                     .map(x -> (x.getPrice() * x.getQuantity()))
-                    .reduce(0f, (a,b) -> a+b);
+                    .reduce(0f, (a, b) -> a + b);
             Cart c = new Cart();
             c.setTotalPrice(cost);
+            c.setAddress(diachi);
+            c.setEmail(email);
+            c.setOrderDate(Calendar.getInstance().getTimeInMillis());
+            c.setPhoneNumber(sdt);
+            c.setUserId(Integer.valueOf(session.getAttribute("userLogin").toString()));
             CartDAO cartDAO = new CartDAO();
             int id = cartDAO.saveToCart(c);
-            
-            
+
             CartDetailDAO cartDetailDAO = new CartDetailDAO();
-            for(BookCartDTO item : cart){
+            for (BookCartDTO item : cart) {
                 CartDetail detail = new CartDetail();
                 detail.setCartId(id);
                 detail.setBookId(item.getId());
                 detail.setCount(item.getQuantity());
                 detail.setTotalCount(item.getPrice() * item.getQuantity());
-                
+
                 cartDetailDAO.saveToCartDetail(id, detail);
             }
         }
         session.removeAttribute(Constant.CART_SESSION);
         session.setAttribute(Constant.CHECKOUT_SESSION, "true");
-        return  "redirect:/home/index";
+        return "redirect:/home/index";
     }
-    
-    
-    @RequestMapping(value = "cartcheckout", method = RequestMethod.POST)
-    public String cartCheckout(ModelMap mm, HttpServletRequest httpServletRequest){
+
+    @RequestMapping(value = "/checkout", method = RequestMethod.GET)
+    public String cartCheckoutGet(ModelMap mm, HttpServletRequest httpServletRequest) {
+
         HttpSession session = httpServletRequest.getSession();
-        mm.put("cart", session.getAttribute(Constant.CART_SESSION));
-        return "checkout";
-    }
-    
-    @RequestMapping(value = "cartcheckout", method = RequestMethod.GET)
-    public String cartCheckoutGet(ModelMap mm, HttpServletRequest httpServletRequest){
-        HttpSession session = httpServletRequest.getSession();
-        mm.put("cart", session.getAttribute(Constant.CART_SESSION));
-        return "checkout";
+        if (session.getAttribute("userLogin") == null || session.getAttribute("userLogin").equals("-1")) {
+            return "redirect:/user/login";
+        } else {
+            mm.put("cart", session.getAttribute(Constant.CART_SESSION));
+            return "checkout";
+        }
     }
 }
