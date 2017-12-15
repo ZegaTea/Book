@@ -45,7 +45,7 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/BookStore</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">ongvi123</property>
+    <property name="hibernate.connection.password">tudv</property>
     <mapping resource="pojo/CartDetail.hbm.xml"/>
     <mapping resource="pojo/Category.hbm.xml"/>
     <mapping resource="pojo/Status.hbm.xml"/>
