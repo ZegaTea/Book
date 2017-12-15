@@ -5,6 +5,8 @@
  */
 package dao;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.hibernate.Session;
 import pojo.CartDetail;
 import utils.BookHibernateUtil;
@@ -25,5 +27,19 @@ public class CartDetailDAO {
         session.getTransaction().commit();
         
         session.close();
+    }
+     
+     public static List<CartDetail> getCartdetail(Integer cartId) {
+        Session session = BookHibernateUtil.getSessionFactory().openSession();
+        List<CartDetail> books = null;
+        try {
+            String sql = "select * from CartDetail where cartId="+cartId.toString();
+            books =  session.createSQLQuery(sql).addEntity(CartDetail.class).list();
+        } catch (Exception e) {
+            
+        } finally {
+            session.close();
+        }
+        return books;
     }
 }

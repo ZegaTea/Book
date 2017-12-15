@@ -71,7 +71,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                              <button type="button" class="btn btn-danger"><a href="${pageContext.request.contextPath}/admin/book/DeleteBook/${item.getId()}" >Yes</a></button>
-                                                            <button type="button" class="btn btn-primary">No</button>
+                                                            <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
                                                         </div>
                                                     </div>
                                                     <!-- /.modal-content -->

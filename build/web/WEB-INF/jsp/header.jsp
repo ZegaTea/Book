@@ -100,7 +100,15 @@
                                 <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
                                 <li><a href="${pageContext.request.contextPath}/cart/detail"><i class="fa fa-user"></i> My Cart</a></li>
                                 <li><a href="${pageContext.request.contextPath}/cart/checkout"><i class="fa fa-user"></i> Checkout</a></li>
-                                <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
+                                    <c:choose>
+                                        <c:when test="${sessionScope.userLogin == null }" >
+                                        <li><a href="${pageContext.request.contextPath}/user/login"><i class="fa fa-user"></i> Login</a></li>     
+                                        </c:when>
+                                        <c:otherwise>
+                                        <li><a href="${pageContext.request.contextPath}/user/logout"><i class="fa fa-user"></i> Logout</a></li>  
+                                        </c:otherwise>
+                                    </c:choose>
+
                             </ul>
                         </div>
                     </div>

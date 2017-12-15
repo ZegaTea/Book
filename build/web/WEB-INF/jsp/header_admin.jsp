@@ -312,7 +312,7 @@
                          </ul>
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i>Quản lý đơn hàng</a>
+                            <a href="${pageContext.request.contextPath}/admin/cart/cartmanagement"><i class="fa fa-table fa-fw"></i>Quản lý đơn hàng</a>
                         </li>
                       
                        

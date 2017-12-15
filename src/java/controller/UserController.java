@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
+    private String referer = "/";
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(){
+    public String login(HttpServletRequest httpServletRequest){
+        referer = httpServletRequest.getHeader("Referer");
         return "login";
     }
     
@@ -32,9 +34,17 @@ public class UserController {
         int id = LoginDAO.checkUserLogin(username, password);
         if(id != -1){
             ss.setAttribute("userLogin", id);
-            return "redirect:/cart/checkout";
+            return "redirect:" + referer;
         }else{
             return "login";
         }
+    }
+    
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout( HttpServletRequest httpServletRequest){
+        HttpSession ss = httpServletRequest.getSession();
+        ss.removeAttribute("userLogin");
+        String ref = httpServletRequest.getHeader("Referer");
+        return "redirect:" + ref;
     }
 }
